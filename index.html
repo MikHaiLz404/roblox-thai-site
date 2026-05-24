@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roblox School — Dev Diary</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">🎮 Roblox School</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <ul class="nav-links">
+        <li><a href="#episodes">EPisodes</a></li>
+        <li><a href="#tutorials">Tutorials</a></li>
+        <li><a href="#tips">Quick Tips</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <div class="nav-search">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="ค้นหาบทความ..."
+          autocomplete="off"
+        >
+        <span class="search-clear" id="searchClear" onclick="clearSearch()">✕</span>
+        <span class="search-shortcut">/</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Roblox Dev Diary</h1>
+      <p class="hero-subtitle">บันทึกการสร้างเกมบน Roblox ตั้งแต่เริ่มต้นจนถึงเปิดตัว — ภาษาไทย สำหรับมือใหม่</p>
+      <div class="hero-tags">
+        <span class="tag">#RobloxDev</span>
+        <span class="tag">#SoloDev</span>
+        <span class="tag">#Luau</span>
+        <span class="tag">#GameDevThai</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Progress Bar -->
+  <div class="progress-section">
+    <div class="container">
+      <div class="progress-header">
+        <h3>📊 ความคืบหน้าของโปรเจค</h3>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+      </div>
+      <div class="progress-stats">
+        <span>Episodes: <strong id="epCount">0/0</strong></span>
+        <span>Tutorials: <strong id="tutCount">0/0</strong></span>
+        <span>Tips: <strong id="tipCount">0/0</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Start Flow -->
+  <section class="quickstart-section">
+    <div class="container">
+      <h2>🚀 Where to Start?</h2>
+      <div class="quickstart-cards">
+        <div class="quickstart-card" onclick="showQuickStart('beginner')">
+          <span class="qs-icon">🌱</span>
+          <h3>มือใหม่</h3>
+          <p>เริ่มต้นที่ EP.01 — แนะนำโปรเจค</p>
+        </div>
+        <div class="quickstart-card" onclick="showQuickStart('learn')">
+          <span class="qs-icon">📚</span>
+          <h3>อยากเรียน</h3>
+          <p>ดู Tutorial ลำดับการเรียนรู้</p>
+        </div>
+        <div class="quickstart-card" onclick="showQuickStart('inspire')">
+          <span class="qs-icon">💡</span>
+          <h3>อยากแรงบันดาลใจ</h3>
+          <p>อ่าน Devlog ล่าสุด</p>
+        </div>
+      </div>
+      <div id="quickStartResult" class="quickstart-result"></div>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <main class="main-content">
+    <div class="container">
+
+      <!-- Episodes / Devlogs -->
+      <section id="episodes" class="content-section">
+        <div class="section-header">
+          <h2>📖 Devlog Episodes</h2>
+          <span class="section-badge" id="epBadge">0 บท</span>
+        </div>
+        <div class="cards-grid" id="episodesGrid">
+          <!-- Cards will be injected by JS -->
+        </div>
+      </section>
+
+      <!-- Tutorials -->
+      <section id="tutorials" class="content-section">
+        <div class="section-header">
+          <h2>📚 Tutorials</h2>
+          <span class="section-badge" id="tutBadge">0 บท</span>
+        </div>
+        <div class="cards-grid" id="tutorialsGrid">
+          <!-- Cards will be injected by JS -->
+        </div>
+      </section>
+
+      <!-- Quick Tips -->
+      <section id="tips" class="content-section">
+        <div class="section-header">
+          <h2>⚡ Quick Tips</h2>
+          <span class="section-badge" id="tipsBadge">0 บท</span>
+        </div>
+        <div class="cards-grid" id="tipsGrid">
+          <!-- Cards will be injected by JS -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Newsletter Signup -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-card">
+        <h2>📬 รับข่าวสารใหม่ทุกสัปดาห์</h2>
+        <p>สมัครรับ Devlog ล่าสุดผ่าน Email — ฟรี!</p>
+        <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+          <input type="email" placeholder="your@email.com" required>
+          <button type="submit">สมัครเลย</button>
+        </form>
+        <p class="newsletter-note">ไม่ส่ง spam — ยกเลิกได้ทุกเมื่อ</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2>👋 เกี่ยวกับ Roblox School</h2>
+      <p>บันทึกการพัฒนาเกมบน Roblox แบบ Solo Dev — เริ่มต้นจากศูนย์จนถึงเปิดตัว</p>
+      <p>Content ทำเป็น Dev Diary ที่จริงใจ — มีทั้ง progress, failures, และ breakthroughs</p>
+      <div class="about-tech">
+        <span>Roblox Studio</span>
+        <span>Luau</span>
+        <span>TypeScript</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>🎮 Roblox School — Dev Diary | สร้างด้วย ❤️</p>
+      <p class="footer-note">Content เป็นภาษาไทย | รองรับ English</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTopBtn" onclick="scrollToTop()">↑</button>
+
+  <!-- Social Share Modal -->
+  <div class="social-share" id="socialShare">
+    <h3>แชร์บทความนี้</h3>
+    <div class="share-buttons">
+      <button class="share-btn twitter" onclick="shareToTwitter()">𝕏 Twitter</button>
+      <button class="share-btn facebook" onclick="shareToFacebook()">📘 Facebook</button>
+      <button class="share-btn linkedin" onclick="shareToLinkedIn()">💼 LinkedIn</button>
+    </div>
+    <button class="share-close" onclick="closeShareModal()">✕ ปิด</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
